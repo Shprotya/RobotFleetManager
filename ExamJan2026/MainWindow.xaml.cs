@@ -25,4 +25,18 @@ namespace ExamJan2026
 
 
     }
+
+    public abstract class Robot
+    {
+        public string RobotName { get; set; }
+        public double PowerCapacityKWH { get; set; }
+        public double CurrentPowerKWH { get; set; }
+
+        public double GetBatteryPercentage()
+        {
+            return (CurrentPowerKWH / PowerCapacityKWH) * 100;
+        }
+
+
+    }
 }
