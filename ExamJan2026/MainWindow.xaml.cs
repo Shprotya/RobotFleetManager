@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 namespace ExamJan2026
 {
     // Enums for different robot types and their specific skills or modes
+    //Created in the namespace, outside of the MainWindow class
     public enum HouseholdSkill { Cooking, Cleaning, Laundry, Gardening, ChildCare }
     public enum DeliveryMode { Walking, Driving, Flying }
 

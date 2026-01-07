@@ -15,11 +15,13 @@ namespace ExamJan2026
         public double PowerCapacityKWH { get; set; }
         public double CurrentPowerKWH { get; set; }
 
+        // method to get battery percentage
         public double GetBatteryPercentage()
         {
             return (CurrentPowerKWH / PowerCapacityKWH) * 100;
         }
 
+        // method to display battery information
         public string DisplayBatteryInformation()
         {
             return $"Battery Information\nCapacity: {PowerCapacityKWH} kWH, \nCurrent Power: {CurrentPowerKWH} kWH \nBattery Level: {GetBatteryPercentage():F2}%";

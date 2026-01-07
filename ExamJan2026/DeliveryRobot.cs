@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ExamJan2026
 {
+    //DeliveryRobot class inheriting from Robot
     public class DeliveryRobot : Robot
     {
         // Property to hold the delivery mode
