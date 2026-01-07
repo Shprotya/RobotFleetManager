@@ -23,10 +23,54 @@ namespace ExamJan2026
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region Created Objects
         public MainWindow()
         {
             InitializeComponent();
         }
+
+        Robot HouseBot = new HouseholdRobot()
+        {
+            RobotName = "HouseBot",
+            PowerCapacityKWH = 5.0,
+            CurrentPowerKWH = 3.5,
+        };
+
+        Robot GardenMate = new HouseholdRobot()
+        {
+            RobotName = "GardenMate",
+            PowerCapacityKWH = 4.0,
+            CurrentPowerKWH = 2.0,
+        };
+
+        Robot Housemate3000 = new HouseholdRobot()
+        {
+            RobotName = "Housemate3000",
+            PowerCapacityKWH = 6.0,
+            CurrentPowerKWH = 4.5,
+        };
+
+        Robot DeliverBot = new DeliveryRobot()
+        {
+            RobotName = "DeliverBot",
+            PowerCapacityKWH = 10.0,
+            CurrentPowerKWH = 7.5,
+        };
+
+        Robot FlyBot = new DeliveryRobot()
+        {
+            RobotName = "FlyBot",
+            PowerCapacityKWH = 8.0,
+            CurrentPowerKWH = 5.0,
+        };
+
+        Robot Driver = new DeliveryRobot()
+        {
+            RobotName = "Driver",
+            PowerCapacityKWH = 12.0,
+            CurrentPowerKWH = 9.0,
+        };
+        #endregion
 
 
     }
@@ -44,7 +88,7 @@ namespace ExamJan2026
 
         public string DisplayBatteryInformation()
         {
-            return $"Battery Information,\nCapacity: {PowerCapacityKWH} kWH, \nCurrent Power: {CurrentPowerKWH} kWH \nBattery Level: {GetBatteryPercentage():F2}%";
+            return $"Battery Information\nCapacity: {PowerCapacityKWH} kWH, \nCurrent Power: {CurrentPowerKWH} kWH \nBattery Level: {GetBatteryPercentage():F2}%";
         }
 
         // used in subclasses to display text information about the robot.
@@ -66,7 +110,7 @@ namespace ExamJan2026
         public override string DescribeRobot()
         {
             var skillsText = (Skills == null || Skills.Count == 0) ? "None" : string.Join(", ", Skills);
-            return $"{RobotName} - Household Robot\n{DisplayBatteryInformation()}\nSkills: {skillsText}";
+            return $"I am a Household Robot.\n\n I can help with chores around the house \nSkills: {skillsText} \n{DisplayBatteryInformation()}";
         }
 
     }
@@ -79,7 +123,7 @@ namespace ExamJan2026
         public override string DescribeRobot()
         {
             var modeText = Mode.ToString();
-            return $"{RobotName} - Delivery Robot\n{DisplayBatteryInformation()}\nDelivery Mode: {modeText}";
+            return $"I am a Delivery Robot\n\n I specialize in delivery by {modeText}. The maximum load i can carry is 100.00 kg.\n{DisplayBatteryInformation()}";
         }
     }
 }
