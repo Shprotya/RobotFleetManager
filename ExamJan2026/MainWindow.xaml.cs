@@ -72,8 +72,42 @@ namespace ExamJan2026
             CurrentPowerKWH = 9.0,
         };
         #endregion
-    }
 
+        private void AllRobots_Radio_Checked(object sender, RoutedEventArgs e)
+        {
+            List<Robot> robots = new List<Robot>()
+            {
+                HouseBot,
+                GardenMate,
+                Housemate3000,
+                DeliverBot,
+                FlyBot,
+                Driver
+            };
+            RobotListbx.ItemsSource = robots;
+        }
+        private void Household_Radio_Checked(object sender, RoutedEventArgs e)
+        {
+            List<Robot> householdRobots = new List<Robot>()
+            {
+                HouseBot,
+                GardenMate,
+                Housemate3000
+            };
+            RobotListbx.ItemsSource = householdRobots;
+        }
+
+        private void Delivery_Radio_Checked(object sender, RoutedEventArgs e)
+        {
+            List<Robot> deliveryRobots = new List<Robot>()
+            {
+                DeliverBot,
+                FlyBot,
+                Driver
+            };
+            RobotListbx.ItemsSource = deliveryRobots;
+        }
+    }
     // Enums for different robot types and their specific skills or modes
     public enum HouseholdSkill { Cooking, Cleaning, Laundry, Gardening, ChildCare }
     public enum DeliveryMode { Walking, Driving, Flying }
@@ -111,6 +145,7 @@ namespace ExamJan2026
 
         public HouseholdRobot()
         {
+            Skills = new List<HouseholdSkill>();
             Skills.Add(HouseholdSkill.Cleaning);
         }
 
