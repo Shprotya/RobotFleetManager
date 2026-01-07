@@ -7,17 +7,17 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <RadioButton x:Name="AllRobots_Radio" Content="ALL ROBOTS&#xD;&#xA;" HorizontalAlignment="Left" Margin="52,127,0,0" VerticalAlignment="Top" Height="19" Checked="AllRobots_Radio_Checked"/>
-        <RadioButton x:Name="Household_Radio" Content="HOUSEHOLD" HorizontalAlignment="Left" Margin="52,217,0,0" VerticalAlignment="Top" Checked="Household_Radio_Checked"/>
-        <RadioButton x:Name="Delivery_Radio" Content="DELIVERY" HorizontalAlignment="Left" Margin="52,322,0,0" VerticalAlignment="Top" Checked="Delivery_Radio_Checked"/>
-        <Label Content="Filter" HorizontalAlignment="Left" Margin="87,59,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Image HorizontalAlignment="Left" Height="94" Margin="180,90,0,0" VerticalAlignment="Top" Width="68" Source="/robot.png"/>
-        <Image HorizontalAlignment="Left" Height="85" Margin="180,195,0,0" VerticalAlignment="Top" Width="65" Source="/household-robot.png"/>
-        <Image HorizontalAlignment="Left" Height="76" Margin="180,303,0,0" VerticalAlignment="Top" Width="65" Source="/delivery-robot.png"/>
-        <Label Content="Robot List" HorizontalAlignment="Left" Margin="345,59,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <ListBox x:Name="RobotListbx" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="281,101,292,55" SelectionChanged="RobotListbx_SelectionChanged"/>
-        <Label Content="Robot Details" HorizontalAlignment="Left" Margin="589,59,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <TextBox x:Name="Details_Txtbl" HorizontalAlignment="Left" Margin="562,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="278"/>
-        <Button x:Name="Charge_btn" Content="Charge" HorizontalAlignment="Left" Margin="656,384,0,0" VerticalAlignment="Top" Background="#FFD53FE6" Height="40" Width="89"/>
+        <RadioButton x:Name="AllRobots_Radio" Content="ALL ROBOTS&#xD;&#xA;" HorizontalAlignment="Left" Margin="56,99,0,0" VerticalAlignment="Top" Height="19" Checked="AllRobots_Radio_Checked"/>
+        <RadioButton x:Name="Household_Radio" Content="HOUSEHOLD" HorizontalAlignment="Left" Margin="56,189,0,0" VerticalAlignment="Top" Checked="Household_Radio_Checked"/>
+        <RadioButton x:Name="Delivery_Radio" Content="DELIVERY" HorizontalAlignment="Left" Margin="56,294,0,0" VerticalAlignment="Top" Checked="Delivery_Radio_Checked"/>
+        <Label Content="Filter" HorizontalAlignment="Left" Margin="91,31,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Image HorizontalAlignment="Left" Height="94" Margin="184,62,0,0" VerticalAlignment="Top" Width="68" Source="/robot.png"/>
+        <Image HorizontalAlignment="Left" Height="85" Margin="184,167,0,0" VerticalAlignment="Top" Width="65" Source="/household-robot.png"/>
+        <Image HorizontalAlignment="Left" Height="76" Margin="184,275,0,0" VerticalAlignment="Top" Width="65" Source="/delivery-robot.png"/>
+        <Label Content="Robot List" HorizontalAlignment="Left" Margin="349,31,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <ListBox x:Name="RobotListbx" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="285,73,288,83" SelectionChanged="RobotListbx_SelectionChanged"/>
+        <Label Content="Robot Details" HorizontalAlignment="Left" Margin="593,31,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <TextBox x:Name="Details_Txtbl" HorizontalAlignment="Left" Margin="566,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="278"/>
+        <Button x:Name="Charge_btn" Content="Charge" HorizontalAlignment="Left" Margin="660,356,0,0" VerticalAlignment="Top" Background="#FFD53FE6" Height="40" Width="89" Click="Charge_btn_Click"/>
     </Grid>
 </Window>

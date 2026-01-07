@@ -41,7 +41,7 @@ namespace ExamJan2026
         {
             RobotName = "GardenMate",
             PowerCapacityKWH = 4.0,
-            CurrentPowerKWH = 2.0,
+            CurrentPowerKWH = 4.0,
         };
 
         Robot Housemate3000 = new HouseholdRobot()
@@ -56,6 +56,7 @@ namespace ExamJan2026
             RobotName = "DeliverBot",
             PowerCapacityKWH = 10.0,
             CurrentPowerKWH = 7.5,
+            Mode = DeliveryMode.Walking
         };
 
         Robot FlyBot = new DeliveryRobot()
@@ -63,6 +64,7 @@ namespace ExamJan2026
             RobotName = "FlyBot",
             PowerCapacityKWH = 8.0,
             CurrentPowerKWH = 5.0,
+            Mode = DeliveryMode.Flying
         };
 
         Robot Driver = new DeliveryRobot()
@@ -70,6 +72,7 @@ namespace ExamJan2026
             RobotName = "Driver",
             PowerCapacityKWH = 12.0,
             CurrentPowerKWH = 9.0,
+            Mode = DeliveryMode.Driving
         };
         #endregion
 
@@ -107,12 +110,9 @@ namespace ExamJan2026
             };
             RobotListbx.ItemsSource = deliveryRobots;
         }
-        private void RobotListbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            DisplayInfo();
-        }
 
-        private void DisplayInfo()
+        // Event handler for selection change in the robot list box
+        private void RobotListbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var selectedRobot = RobotListbx.SelectedItem as Robot;
             if (selectedRobot == null)
@@ -124,14 +124,28 @@ namespace ExamJan2026
             Details_Txtbl.Text = selectedRobot.DescribeRobot();
         }
 
-       
+        // Event handler for the Charge button click
+        private void Charge_btn_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedRobot = RobotListbx.SelectedItem as Robot;
+            if (selectedRobot == null)
+            {
+                MessageBox.Show("No robot selected to charge.");
+                return;
+            }
+            selectedRobot.Charge();
+
+        }
     }
+
     // Enums for different robot types and their specific skills or modes
     public enum HouseholdSkill { Cooking, Cleaning, Laundry, Gardening, ChildCare }
     public enum DeliveryMode { Walking, Driving, Flying }
 
+
     public abstract class Robot
     {
+        // common properties for all robots
         public string RobotName { get; set; }
         public double PowerCapacityKWH { get; set; }
         public double CurrentPowerKWH { get; set; }
@@ -155,12 +169,29 @@ namespace ExamJan2026
             return $"{RobotName} - {GetType().Name}";
         }
 
+        // Method to charge the robot
+        public void Charge()
+        {
+            if (CurrentPowerKWH == PowerCapacityKWH)
+            {
+                MessageBox.Show($"{RobotName} is already fully charged.");
+            }
+            else
+            {
+                double speed = 1.0; // Charging speed in kWH per hour
+                double timeToFullCharge = (PowerCapacityKWH - CurrentPowerKWH) / speed;
+                MessageBox.Show($"Charging {RobotName}...\nIt will take approximately {timeToFullCharge:F2} hours to fully charge.");
+            }
+        }
     }
 
+    // HouseholdRobot class inheriting from Robot
     public class HouseholdRobot : Robot
     {
+        // List to hold the skills of the household robot
         private List<HouseholdSkill> Skills { get; set; }
 
+        // Constructor to initialize the skills list with Cleaning skill by default
         public HouseholdRobot()
         {
             Skills = new List<HouseholdSkill>();
@@ -171,9 +202,10 @@ namespace ExamJan2026
         public override string DescribeRobot()
         {
             var skillsText = (Skills == null || Skills.Count == 0) ? "None" : string.Join(", ", Skills);
-            return $"I am a Household Robot.\n\n I can help with chores around the house \nSkills: {skillsText} \n{DisplayBatteryInformation()}";
+            return $"I am a Household Robot.\n\n I can help with chores around the house \n\nSkills: {skillsText} \n\n{DisplayBatteryInformation()}";
         }
 
+        // Method to download a new skill to the household robot
         public void DownloadSkill(HouseholdSkill skill)
         {
             
@@ -184,15 +216,13 @@ namespace ExamJan2026
 
     public class DeliveryRobot : Robot
     {
-        private DeliveryMode Mode { get; set; }
+        // Property to hold the delivery mode
+        public DeliveryMode Mode { get; set; }
 
         // DescribeRobot override without using StringBuilder.Append
         public override string DescribeRobot()
         {
-            var modeText = Mode.ToString();
-            return $"I am a Delivery Robot\n\n I specialize in delivery by {modeText}. The maximum load i can carry is 100.00 kg.\n{DisplayBatteryInformation()}";
+            return $"I am a Delivery Robot\n\n I specialize in delivery by {Mode}. The maximum load i can carry is 100.00 kg.\n\n{DisplayBatteryInformation()}";
         }
-
-
     }
 }
