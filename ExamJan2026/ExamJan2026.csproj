@@ -8,4 +8,16 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="delivery-robot.png" />
+    <None Remove="household-robot.png" />
+    <None Remove="robot.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="delivery-robot.png" />
+    <Resource Include="household-robot.png" />
+    <Resource Include="robot.png" />
+  </ItemGroup>
+
 </Project>

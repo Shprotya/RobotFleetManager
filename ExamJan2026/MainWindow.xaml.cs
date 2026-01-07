@@ -9,6 +9,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+// The link to the repository is: https://github.com/Shprotya/ExamJan2026
+
 namespace ExamJan2026
 {
     /// <summary>
@@ -20,5 +22,7 @@ namespace ExamJan2026
         {
             InitializeComponent();
         }
+
+
     }
 }
