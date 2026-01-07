@@ -14,12 +14,16 @@ using System.Windows.Shapes;
 
 namespace ExamJan2026
 {
+    // Enums for different robot types and their specific skills or modes
+    public enum HouseholdSkill { Cooking, Cleaning, Laundry, Gardening, ChildCare }
+    public enum DeliveryMode { Walking, Driving, Flying }
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        #region Created Objects
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -30,6 +34,7 @@ namespace ExamJan2026
             ((HouseholdRobot)Housemate3000).DownloadSkill(HouseholdSkill.Laundry);
         }
 
+        #region Created Objects
         Robot HouseBot = new HouseholdRobot()
         {
             RobotName = "HouseBot",
@@ -135,94 +140,6 @@ namespace ExamJan2026
             }
             selectedRobot.Charge();
 
-        }
-    }
-
-    // Enums for different robot types and their specific skills or modes
-    public enum HouseholdSkill { Cooking, Cleaning, Laundry, Gardening, ChildCare }
-    public enum DeliveryMode { Walking, Driving, Flying }
-
-
-    public abstract class Robot
-    {
-        // common properties for all robots
-        public string RobotName { get; set; }
-        public double PowerCapacityKWH { get; set; }
-        public double CurrentPowerKWH { get; set; }
-
-        public double GetBatteryPercentage()
-        {
-            return (CurrentPowerKWH / PowerCapacityKWH) * 100;
-        }
-
-        public string DisplayBatteryInformation()
-        {
-            return $"Battery Information\nCapacity: {PowerCapacityKWH} kWH, \nCurrent Power: {CurrentPowerKWH} kWH \nBattery Level: {GetBatteryPercentage():F2}%";
-        }
-
-        // used in subclasses to display text information about the robot.
-        public abstract string DescribeRobot();
-
-        // used to give robot name and type of robot. 
-        public override string ToString()
-        {
-            return $"{RobotName} - {GetType().Name}";
-        }
-
-        // Method to charge the robot
-        public void Charge()
-        {
-            if (CurrentPowerKWH == PowerCapacityKWH)
-            {
-                MessageBox.Show($"{RobotName} is already fully charged.");
-            }
-            else
-            {
-                double speed = 1.0; // Charging speed in kWH per hour
-                double timeToFullCharge = (PowerCapacityKWH - CurrentPowerKWH) / speed;
-                MessageBox.Show($"Charging {RobotName}...\nIt will take approximately {timeToFullCharge:F2} hours to fully charge.");
-            }
-        }
-    }
-
-    // HouseholdRobot class inheriting from Robot
-    public class HouseholdRobot : Robot
-    {
-        // List to hold the skills of the household robot
-        private List<HouseholdSkill> Skills { get; set; }
-
-        // Constructor to initialize the skills list with Cleaning skill by default
-        public HouseholdRobot()
-        {
-            Skills = new List<HouseholdSkill>();
-            Skills.Add(HouseholdSkill.Cleaning);
-        }
-
-        // DescribeRobot override without using StringBuilder.Append
-        public override string DescribeRobot()
-        {
-            var skillsText = (Skills == null || Skills.Count == 0) ? "None" : string.Join(", ", Skills);
-            return $"I am a Household Robot.\n\n I can help with chores around the house \n\nSkills: {skillsText} \n\n{DisplayBatteryInformation()}";
-        }
-
-        // Method to download a new skill to the household robot
-        public void DownloadSkill(HouseholdSkill skill)
-        {
-            
-            Skills.Add(skill);
-        }
-
-    }
-
-    public class DeliveryRobot : Robot
-    {
-        // Property to hold the delivery mode
-        public DeliveryMode Mode { get; set; }
-
-        // DescribeRobot override without using StringBuilder.Append
-        public override string DescribeRobot()
-        {
-            return $"I am a Delivery Robot\n\n I specialize in delivery by {Mode}. The maximum load i can carry is 100.00 kg.\n\n{DisplayBatteryInformation()}";
         }
     }
 }
