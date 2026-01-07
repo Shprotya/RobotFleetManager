@@ -107,6 +107,24 @@ namespace ExamJan2026
             };
             RobotListbx.ItemsSource = deliveryRobots;
         }
+        private void RobotListbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DisplayInfo();
+        }
+
+        private void DisplayInfo()
+        {
+            var selectedRobot = RobotListbx.SelectedItem as Robot;
+            if (selectedRobot == null)
+            {
+                Details_Txtbl.Text = "No robot selected.";
+                return;
+            }
+
+            Details_Txtbl.Text = selectedRobot.DescribeRobot();
+        }
+
+       
     }
     // Enums for different robot types and their specific skills or modes
     public enum HouseholdSkill { Cooking, Cleaning, Laundry, Gardening, ChildCare }
@@ -134,7 +152,7 @@ namespace ExamJan2026
         // used to give robot name and type of robot. 
         public override string ToString()
         {
-            return $"{RobotName} - ";
+            return $"{RobotName} - {GetType().Name}";
         }
 
     }
