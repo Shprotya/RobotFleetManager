@@ -136,7 +136,7 @@ namespace ExamJan2026
             var selectedRobot = RobotListbx.SelectedItem as Robot;
             if (selectedRobot == null)
             {
-                MessageBox.Show("No robot selected to charge.");
+                MessageBox.Show("No robot selected to charge.", "Select a Robot");
                 return;
             }
             selectedRobot.Charge();

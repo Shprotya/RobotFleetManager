@@ -41,13 +41,14 @@ namespace ExamJan2026
         {
             if (CurrentPowerKWH == PowerCapacityKWH)
             {
-                MessageBox.Show($"{RobotName} is already fully charged.");
+                MessageBox.Show($"{RobotName} is already fully charged.", "Robot charged");
             }
             else
             {
                 double speed = 1.0; // Charging speed in kWH per hour
                 double timeToFullCharge = (PowerCapacityKWH - CurrentPowerKWH) / speed;
-                MessageBox.Show($"Charging {RobotName}...\nIt will take approximately {timeToFullCharge:F2} hours to fully charge.");
+                MessageBox.Show($"Charging {RobotName}...\nIt will take approximately {timeToFullCharge:F2} hours to fully charge.", "Robot charging");
+                CurrentPowerKWH = PowerCapacityKWH;
             }
         }
     }
